@@ -29,7 +29,7 @@ fi
 #source /usr/local/etc/bash_completion.d/git-prompt.sh
 
 # Colourful prompt (including git info)
-source ~/.bash_prompt
+source ~/.mac-env/bash_prompt
 
 # Colorful things
 export CLICOLOR=1
