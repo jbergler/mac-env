@@ -9,13 +9,14 @@
   1. Install sublime text from http://www.sublimetext.com/3 and setup command line alias
 
   ```
+  mkdir ~/bin
   ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
   ```
 
   1. Install some useful packages
 
   ```
-  brew install josegonzalez/php/php54 bash bash-completion2 mtr psutils wget
+  brew install josegonzalez/php/php54 bash homebrew/versions/bash-completion2 mtr psutils wget
   ```
 
   1. Setup newer version of bash as your shell
