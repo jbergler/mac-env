@@ -1,12 +1,10 @@
 # Start the GnuPG agent and enable OpenSSH agent emulation
-gnupginf="${HOME}/.gpg-agent-info"
-
-if pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
-    eval `cat $gnupginf`
-    eval `cut -d= -f1 $gnupginf | xargs echo export`
-else
-    eval `gpg-agent --daemon --write-env-file "$gnupginf"`
-fi
+SSH_AUTH_SOCK=/Users/jbergler/.gnupg/S.gpg-agent.ssh; export SSH_AUTH_SOCK;
+#if pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
+#    SSH_AUTH_SOCK=/Users/jbergler/.gnupg/S.gpg-agent.ssh; export SSH_AUTH_SOCK;
+#else
+#    eval `gpg-agent --daemon`
+#fi
 
 # Set Sublime as the editor
 export EDITOR='subl -w'
@@ -15,28 +13,24 @@ export EDITOR='subl -w'
 ulimit -S -n 1024
 
 # Homebrew sbin
-export PATH=/usr/local/sbin:${PATH}
-
-# brew install josegonzalez/php/php54
-export PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
+export PATH="${PATH}:${HOME}/.rvm/bin" # Add RVM to PATH for scripting
 
 # Personal bin directory in ~
-export PATH=~/bin:${PATH}
+export PATH=${HOME}/bin:${PATH}
 
 # brew install bash
 #  echo "/usr/local/bin/bash" >> /etc/shells
 #  chsh -s /usr/local/bin/bash
 
 # brew install bash-completion2
-if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
- . $(brew --prefix)/share/bash-completion/bash_completion
-fi
+# if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
+#  . $(brew --prefix)/share/bash-completion/bash_completion
+# fi
 
 # Git completion
-#source /usr/local/etc/bash_completion.d/git-completion.bash
-
-# Git prompt
-#source /usr/local/etc/bash_completion.d/git-prompt.sh
+source /usr/local/etc/bash_completion.d/git-completion.bash
+source /usr/local/etc/bash_completion.d/git-prompt.sh
 
 # Colourful prompt (including git info)
 source ~/.mac-env/bash_prompt
@@ -48,5 +42,4 @@ export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 # Better ls 
 alias ls="ls -GFphal"
 
-# Android Paths
-#PATH=${PATH}:/Applications/Android\ Studio.app/sdk/platform-tools:/Applications/Android\ Studio.app/sdk/tools:~/bin/gradle/bin
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
